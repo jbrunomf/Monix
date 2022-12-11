@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 
 namespace Monix.ViewModels;
@@ -11,6 +12,7 @@ public class UserRegisterViewModel
     [Required(ErrorMessage = "O campo {0} é de preenchimento obrigatório.")]
     public string UserName { get; set; }
 
+    [Display(Name = "Telefone")]
     [DataType(DataType.PhoneNumber)]
     [Required(ErrorMessage = "O campo {0} é de preenchimento obrigatório.")]
     [StringLength(11, ErrorMessage = "O campo {0} deve ter {1} digitos.")]
@@ -21,6 +23,7 @@ public class UserRegisterViewModel
     [Required(ErrorMessage = "O campo {0} é de prenchimento obrigatório.")]
     public string Email { get; set; }
     
+    [Display(Name = "Senha")]
     [DataType(DataType.Password)]
     [MaxLength(16, ErrorMessage = "O tamanho máximo do campo {0} [e de {1} caracteres.")]
     [MinLength(6, ErrorMessage = "O tamanho mínimo do campo {0} é de {1} caracteres.")]

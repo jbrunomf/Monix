@@ -293,3 +293,5 @@ F:\dev\Monix\Monix\obj\Debug\net6.0\refint\Monix.dll
 F:\dev\Monix\Monix\obj\Debug\net6.0\Monix.pdb
 F:\dev\Monix\Monix\obj\Debug\net6.0\Monix.genruntimeconfig.cache
 F:\dev\Monix\Monix\obj\Debug\net6.0\ref\Monix.dll
+F:\dev\Monix\Monix\bin\Debug\net6.0\AutoMapper.dll
+F:\dev\Monix\Monix\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
