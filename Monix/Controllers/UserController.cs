@@ -74,7 +74,7 @@ public class UserController : Controller
     }
 
     [HttpGet]
-    public Task<IActionResult> Login()
+    public async Task<IActionResult> Login()
     {
         return View();
     }
