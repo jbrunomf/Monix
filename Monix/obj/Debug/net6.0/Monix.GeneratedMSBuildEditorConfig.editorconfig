@@ -183,6 +183,46 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/dev/Monix/Monix/Views/Person/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Person/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Person/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Person/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Person/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Phone/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Phone/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Phone/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Phone/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dev/Monix/Monix/Views/Phone/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/dev/Monix/Monix/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

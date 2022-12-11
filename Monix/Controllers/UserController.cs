@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Monix.Extensions;
 using Monix.ViewModels;
 
@@ -72,5 +71,11 @@ public class UserController : Controller
     private bool UserExists(string id)
     {
         return _userManager.Users.AsNoTracking().Any(u => u.Id == id);
+    }
+
+    [HttpGet]
+    public Task<IActionResult> Login()
+    {
+        return View();
     }
 }

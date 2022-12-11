@@ -1,7 +1,6 @@
 F:\dev\Monix\Monix\bin\Debug\net6.0\appsettings.Development.json
 F:\dev\Monix\Monix\bin\Debug\net6.0\appsettings.json
 F:\dev\Monix\Monix\bin\Debug\net6.0\Monix.staticwebassets.runtime.json
-F:\dev\Monix\Monix\bin\Debug\net6.0\app.db
 F:\dev\Monix\Monix\bin\Debug\net6.0\Monix.exe
 F:\dev\Monix\Monix\bin\Debug\net6.0\Monix.deps.json
 F:\dev\Monix\Monix\bin\Debug\net6.0\Monix.runtimeconfig.json
@@ -295,3 +294,4 @@ F:\dev\Monix\Monix\obj\Debug\net6.0\Monix.genruntimeconfig.cache
 F:\dev\Monix\Monix\obj\Debug\net6.0\ref\Monix.dll
 F:\dev\Monix\Monix\bin\Debug\net6.0\AutoMapper.dll
 F:\dev\Monix\Monix\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\dev\Monix\Monix\bin\Debug\net6.0\app.db
