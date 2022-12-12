@@ -10,14 +10,15 @@ namespace Monix.Controllers;
 public class UserController : Controller
 {
     private readonly UserManager<IdentityUser> _userManager;
-    private readonly IMapper _mapper;
+    private readonly SignInManager<IdentityUser> _signInManager;
 
-    public UserController(UserManager<IdentityUser> userManager, IMapper mapper)
+    public UserController(UserManager<IdentityUser> userManager,
+        SignInManager<IdentityUser> signInManager)
     {
         _userManager = userManager;
-        _mapper = mapper;
+        _signInManager = signInManager;
     }
-    
+
     // GET
     public async Task<IActionResult> Register(string? id)
     {
@@ -29,13 +30,13 @@ public class UserController : Controller
                 this.ShowMessage("Usuário não encontrado.", true);
                 return RedirectToAction("Index", "Home");
             }
+
             var userViewModel = new UserRegisterViewModel
             {
                 Id = user.Id,
                 UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-
             };
             return View(userViewModel);
         }
@@ -65,6 +66,7 @@ public class UserController : Controller
         {
             this.ShowMessage("Usuário cadastrado com sucesso.");
         }
+
         return RedirectToAction("Index", controllerName: "Home");
     }
 
@@ -77,5 +79,30 @@ public class UserController : Controller
     public async Task<IActionResult> Login()
     {
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login([FromForm] UserLoginViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password,
+                viewModel.RememberUsername, false);
+
+            if (result.Succeeded)
+            {
+                viewModel.ReturnUrl = viewModel.ReturnUrl ?? "~/";
+                return LocalRedirect(viewModel.ReturnUrl);
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty,
+                    "Tentativa de login inválida. Verifique os dados de acesso e tente novamente.");
+            }
+
+            return View(viewModel);
+        }
+
+        return View(viewModel);
     }
 }

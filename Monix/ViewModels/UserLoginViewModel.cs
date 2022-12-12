@@ -15,5 +15,7 @@ public class UserLoginViewModel
     [Required]
     [Display(Name = "Lembrar de mim")]
     public bool RememberUsername { get; set; }
+
+    public string? ReturnUrl { get; set; }
     
 }
