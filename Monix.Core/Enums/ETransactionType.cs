@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monix.Core.Enums
+namespace Monix.Core.Enums;
+
+public enum ETransactionType
 {
-    public enum ETransactionType
-    {
-        Deposit = 0,
-        Withdraw = 1
-    }
+    Deposit = 0,
+    Withdraw = 1
 }
