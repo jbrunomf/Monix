@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Monix.Api.Data;
 using Monix.Core.Models;
-using Monix.Core.Requests;
+using Monix.Core.Requests.Categories;
 
 namespace Monix.Api.Controllers
 {
