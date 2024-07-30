@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Monix.Api.Data;
 using Monix.Core.Models;
 using Monix.Core.Requests.Categories;
+using Monix.Core.Responses;
 
 namespace Monix.Api.Controllers
 {
@@ -11,6 +13,10 @@ namespace Monix.Api.Controllers
         [HttpPost("api/v1/categories")]
         public async Task<IActionResult> Create(AppDbContext context, CreateCategoryRequest request)
         {
+
+            if (!ModelState.IsValid)
+                return BadRequest(new Response<object>(ModelState.Values));
+
             var category = new Category()
             {
                 Description = request.Description,
@@ -28,7 +34,7 @@ namespace Monix.Api.Controllers
         public IActionResult GetAll(AppDbContext context)
         {
             var categoriesList = context.Categories.ToList();
-            return Ok(categoriesList);
+            return Ok(new Response<List<Category>>(categoriesList));
         }
     }
 }
