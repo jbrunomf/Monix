@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Monix.Api.Data;
 using Monix.Core.Models;
 using Monix.Core.Requests.Categories;

@@ -1,7 +1,6 @@
 ﻿using Monix.Core.Enums;
-using Monix.Core.Requests;
 
-namespace Monix.Api.Requests
+namespace Monix.Core.Requests
 {
     public class CreateTransactionRequest : Request
     {
