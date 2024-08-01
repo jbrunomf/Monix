@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Monix.Api.Data;
+using Monix.Api.Handlers.Categories;
 using Monix.Core.Models;
 using Monix.Core.Requests.Categories;
 using Monix.Core.Responses;
@@ -10,23 +11,16 @@ namespace Monix.Api.Controllers
     public class CategoryController : ControllerBase
     {
         [HttpPost("api/v1/categories")]
-        public async Task<IActionResult> Create(AppDbContext context, CreateCategoryRequest request)
+        public async Task<IActionResult> Create(AppDbContext context, CreateCategoryRequest request, CategoryHandler handler)
         {
 
             if (!ModelState.IsValid)
-                return BadRequest(new Response<object>(ModelState.Values));
+                return BadRequest(new Response<string>("Erro ao adicionar Categoria."));
 
-            var category = new Category()
-            {
-                Description = request.Description,
-                UserId = request.UserId,
-                Title = request.Title
-            };
 
-            var added = await context.Categories.AddAsync(category);
-            await context.SaveChangesAsync();
+            var category = await handler.CreateAsync(request);
 
-            return Created($"/v1/categories/{added.Entity.Id}", added.Entity.Id);
+            return Created($"/v1/categories/{category?.Data?.Id}", category.Data);
         }
 
         [HttpGet("api/v1/categories")]

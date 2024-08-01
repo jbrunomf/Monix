@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Monix.Api.Data;
+using Monix.Api.Handlers.Categories;
+using Monix.Core.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(connectionString);
 });
+
+//Dependency Injection
+builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
