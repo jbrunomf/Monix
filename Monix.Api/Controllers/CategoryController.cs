@@ -32,5 +32,12 @@ namespace Monix.Api.Controllers
             var categoriesList = context.Categories.ToList();
             return Ok(new Response<List<Category>>(categoriesList));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest request, ICategoryHandler handler)
+        {
+            var result = await handler.UpdateAsync(request);
+            return Ok(result);
+        }
     }
 }

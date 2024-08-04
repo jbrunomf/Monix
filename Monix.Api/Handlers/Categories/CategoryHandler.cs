@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Monix.Api.Data;
 using Monix.Core.Handlers;
 using Monix.Core.Models;
@@ -7,9 +8,9 @@ using Monix.Core.Responses;
 
 namespace Monix.Api.Handlers.Categories
 {
-    public class CategoryHandler (AppDbContext context): ICategoryHandler
+    public class CategoryHandler(AppDbContext context) : ICategoryHandler
     {
-        public async Task<Response<Category>> CreateAsync(CreateCategoryRequest request)
+        public async Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
         {
             try
             {
@@ -23,7 +24,7 @@ namespace Monix.Api.Handlers.Categories
                 await context.Categories.AddAsync(category);
                 await context.SaveChangesAsync();
 
-                return new Response<Category>(category);
+                return new Response<Category>(category, 201, "Categoria criada com sucesso!");
             }
             catch (Exception e)
             {
@@ -32,17 +33,38 @@ namespace Monix.Api.Handlers.Categories
             }
         }
 
-        public Task<Response<Category>> UpdateAsync(UpdateCategoryRequest request)
+        public async Task<Response<Category?>> UpdateAsync(UpdateCategoryRequest request)
+        {
+            try
+            {
+                var category = await context
+                    .Categories
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
+
+                if (category is null)
+                    return new Response<Category?>(null, 500, "Não foi possível atualizar a categoria.");
+
+                category.Title = request.Title;
+                category.Description = request.Description;
+
+                context.Categories.Update(category);
+                await context.SaveChangesAsync();
+
+                return new Response<Category?>(category);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public Task<Response<Category?>> DeleteAsync(DeleteCategoryRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<Category>> DeleteAsync(DeleteCategoryRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Response<Category>> GetByIdAsync(GetCategoryByIdRequest request)
+        public Task<Response<Category?>> GetByIdAsync(GetCategoryByIdRequest request)
         {
             throw new NotImplementedException();
         }
