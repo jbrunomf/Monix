@@ -59,14 +59,34 @@ namespace Monix.Api.Handlers.Categories
             }
         }
 
-        public Task<Response<Category?>> DeleteAsync(DeleteCategoryRequest request)
+        public async Task<Response<Category?>> DeleteAsync(DeleteCategoryRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var category = await context
+                    .Categories
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
+
+                if (category is null)
+                    return new Response<Category?>(null, 500, "Não foi possível remover a categoria.");
+
+
+                context.Categories.Remove(category);
+                await context.SaveChangesAsync();
+
+                return new Response<Category?>(category);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
-        public Task<Response<Category?>> GetByIdAsync(GetCategoryByIdRequest request)
+        public async Task<Response<Category?>?> GetByIdAsync(GetCategoryByIdRequest request)
         {
-            throw new NotImplementedException();
+            var category = await context.Categories.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
+            return category != null ? new Response<Category?>(category, 200, "") : null;
         }
 
         public Task<Response<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)

@@ -12,7 +12,7 @@ namespace Monix.Api.Controllers
     public class CategoryController : ControllerBase
     {
         [HttpPost("api/v1/categories")]
-        public async Task<IActionResult> Create(AppDbContext context, CreateCategoryRequest request, 
+        public async Task<IActionResult> Create(AppDbContext context, CreateCategoryRequest request,
             ICategoryHandler handler)
         {
 
@@ -33,10 +33,26 @@ namespace Monix.Api.Controllers
             return Ok(new Response<List<Category>>(categoriesList));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest request, ICategoryHandler handler)
+        [HttpPost("api/v1/categories/update")]
+        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest request,
+            ICategoryHandler handler)
         {
             var result = await handler.UpdateAsync(request);
+            return Ok(result);
+        }
+
+        [HttpDelete("api/v1/categories")]
+        public async Task<IActionResult> DeleteAsync(DeleteCategoryRequest request,
+            ICategoryHandler handler)
+        {
+            var result = await handler.DeleteAsync(request);
+            return Ok(result);
+        }
+
+        [HttpGet("api/v1/categories/{id}")]
+        public async Task<IActionResult> GetByIdAsync(GetCategoryByIdRequest request, ICategoryHandler handler)
+        {
+            var result = await handler.GetByIdAsync(request);
             return Ok(result);
         }
     }
