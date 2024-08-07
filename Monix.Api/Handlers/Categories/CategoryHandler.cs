@@ -33,7 +33,7 @@ namespace Monix.Api.Handlers.Categories
             }
         }
 
-        public async Task<Response<Category?>> UpdateAsync(UpdateCategoryRequest request)
+        public async Task<Response<Category?>> UpdateAsync (UpdateCategoryRequest request)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Monix.Api.Handlers.Categories
                 context.Categories.Update(category);
                 await context.SaveChangesAsync();
 
-                return new Response<Category?>(category);
+                return new Response<Category?>(category, 200, "Categoria Atualizada com sucesso!");
             }
             catch (Exception e)
             {
@@ -69,7 +69,7 @@ namespace Monix.Api.Handlers.Categories
                     .FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
 
                 if (category is null)
-                    return new Response<Category?>(null, 500, "Não foi possível remover a categoria.");
+                    return new Response<Category?>(null, 500, "Não foi possível excluir a categoria.");
 
 
                 context.Categories.Remove(category);

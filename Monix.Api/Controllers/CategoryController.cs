@@ -33,18 +33,20 @@ namespace Monix.Api.Controllers
             return Ok(new Response<List<Category>>(categoriesList));
         }
 
-        [HttpPost("api/v1/categories/update")]
-        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest request,
+        [HttpPut("api/v1/categories/{id}")]
+        public async Task<IActionResult> UpdateAsync(long id, UpdateCategoryRequest request,
             ICategoryHandler handler)
         {
+            request.Id = id;
             var result = await handler.UpdateAsync(request);
             return Ok(result);
         }
 
-        [HttpDelete("api/v1/categories")]
-        public async Task<IActionResult> DeleteAsync(DeleteCategoryRequest request,
+        [HttpDelete("api/v1/categories/{id}")]
+        public async Task<IActionResult> DeleteAsync(long id, DeleteCategoryRequest request,
             ICategoryHandler handler)
         {
+            request.Id = id;
             var result = await handler.DeleteAsync(request);
             return Ok(result);
         }
