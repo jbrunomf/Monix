@@ -43,10 +43,13 @@ namespace Monix.Api.Controllers
         }
 
         [HttpDelete("api/v1/categories/{id}")]
-        public async Task<IActionResult> DeleteAsync(long id, DeleteCategoryRequest request,
+        public async Task<IActionResult> DeleteAsync(long id,
             ICategoryHandler handler)
         {
-            request.Id = id;
+            var request = new DeleteCategoryRequest()
+            {
+                Id = id
+            };
             var result = await handler.DeleteAsync(request);
             return Ok(result);
         }
