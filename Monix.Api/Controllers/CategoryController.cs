@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Validations.Rules;
 using Monix.Api.Data;
 using Monix.Api.Handlers.Categories;
 using Monix.Core.Handlers;
@@ -27,10 +28,14 @@ namespace Monix.Api.Controllers
         }
 
         [HttpGet("api/v1/categories")]
-        public IActionResult GetAll(AppDbContext context)
+        public async Task<IActionResult> GetAll(ICategoryHandler handler)
         {
-            var categoriesList = context.Categories.ToList();
-            return Ok(new Response<List<Category>>(categoriesList));
+            var request = new GetAllCategoriesRequest()
+            {
+                UserId = "string"
+            };
+            var categoriesList = await handler.GetAllAsync(request);
+            return Ok(categoriesList);
         }
 
         [HttpPut("api/v1/categories/{id}")]

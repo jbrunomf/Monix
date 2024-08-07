@@ -33,7 +33,7 @@ namespace Monix.Api.Handlers.Categories
             }
         }
 
-        public async Task<Response<Category?>> UpdateAsync (UpdateCategoryRequest request)
+        public async Task<Response<Category?>> UpdateAsync(UpdateCategoryRequest request)
         {
             try
             {
@@ -86,12 +86,31 @@ namespace Monix.Api.Handlers.Categories
         public async Task<Response<Category?>?> GetByIdAsync(GetCategoryByIdRequest request)
         {
             var category = await context.Categories.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
-            return category != null ? new Response<Category?>(category, 200, "") : null;
+            return category is null ? new Response<Category?>(null, 404, "Categoria não encontrada.") : new Response<Category?>(category);
         }
 
-        public Task<Response<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)
+        public async Task<PagedResponse<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = context
+                    .Categories
+                    .AsNoTracking()
+                    .Where(x => x.UserId == request.UserId);
+
+                var categories = await query
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToListAsync();
+
+                var count = await query.CountAsync();
+
+                return new PagedResponse<List<Category>>(categories, count, request.PageNumber, request.PageSize);
+            }
+            catch (Exception e)
+            {
+                return new PagedResponse<List<Category>>(null, 500, "Erro ao recuperar categorias.");
+            }
         }
     }
 }

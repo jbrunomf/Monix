@@ -8,14 +8,12 @@ namespace Monix.Core.Responses
 {
     public class PagedResponse<T> : Response<T>
     {
-        public PagedResponse(int currentPage, int pageSize, int totalCount)
+        public PagedResponse(T data, int code, string message = null)
         {
-            CurrentPage = currentPage;
-            PageSize = pageSize;
-            TotalCount = totalCount;
+            Data = data;
         }
 
-        public PagedResponse(int currentPage, int pageSize, int totalCount, T? data, int code = Configuration.DefaultStatusCode, string? message = null) : base(data, code, message)
+        public PagedResponse(T? data, int totalCount, int currentPage, int pageSize, int code = Configuration.DefaultStatusCode, string? message = null) : base(data, code, message)
         {
             CurrentPage = currentPage;
             PageSize = pageSize;
