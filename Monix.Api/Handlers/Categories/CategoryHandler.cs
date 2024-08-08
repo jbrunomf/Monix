@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Monix.Api.Data;
 using Monix.Core.Handlers;
 using Monix.Core.Models;
@@ -24,7 +23,7 @@ namespace Monix.Api.Handlers.Categories
                 await context.Categories.AddAsync(category);
                 await context.SaveChangesAsync();
 
-                return new Response<Category>(category, 201, "Categoria criada com sucesso!");
+                return new Response<Category?>(category, 201, "Categoria criada com sucesso!");
             }
             catch (Exception e)
             {

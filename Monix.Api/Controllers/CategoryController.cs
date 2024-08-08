@@ -21,10 +21,9 @@ namespace Monix.Api.Controllers
                 return BadRequest(new Response<string>("Erro ao adicionar Categoria."));
 
 
-            var category = await handler.CreateAsync(request);
+            var result = await handler.CreateAsync(request);
 
-
-            return Created($"/v1/categories/{category?.Data?.Id}", category.Data);
+            return result.IsSuccess ? Created($"/{result?.Data?.Id}", result?.Data) : BadRequest(result?.Data);
         }
 
         [HttpGet("api/v1/categories")]
